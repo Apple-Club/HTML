@@ -1,0 +1,63 @@
+<html>
+<head>
+<style>
+input[type='text'] { font-size: 24px; text-align: center}
+input[type='option'] { font-size: 24px;}
+input[type='submit'] { font-size: 24px;}
+input[type='checkbox'] { font-size: 24px;}
+</style>
+</head>
+<body>
+<form id="music" method="GET" style="text-align:center">
+<input name="q" size="12" type="text" autocomplete="off" placeholder="Search query"><select name="country" id="country" style="text-align:center">
+<option value="us" selected>United States</option>
+<option value="cn">China</option>
+<option value="fr">France</option>
+<option value="de">Germany</option>
+<option value="jp">Japan</option>
+<option value="es">Spain</option>
+<option value="uk">United Kingdom</option>
+</select><br>
+<font size="3" face="'Lucida Grande'">Price:</font>
+<select name="price" id="price">
+<option value="all" selected>All</option>
+<option value="0.69">$0.69</option>
+<option value="0.99">$0.99</option>
+<option value="1.29">$1.29</option>
+</select>
+<input type="checkbox" id="titleonly" name="titleonly"><font size="2" face="'Lucida Grande'">Search titles only </font><img src="https://dl.dropboxusercontent.com/u/126940227/Help.png" alt="image text" height="16" width="16" title="Search for songs which have a title matching your keywords. Will not search in the description of the album when this box is checked." onclick="javascript:alert('Search for songs which have a title matching your keywords. Will not search in the description of the album when this box is checked.');" />&nbsp;&nbsp;
+<input type="checkbox" id="exact" name="exact" style="text-align:center"><font size="2" face="'Lucida Grande'">Exact phrase <img src="https://dl.dropboxusercontent.com/u/126940227/Help.png" alt="image text" height="16" width="16" title="Search results will match the phrase you entered in the search query, and will not include results that only match part of the phrase." onclick="javascript:alert('Search results will match the phrase you entered in the search query, and will not include results that only match part of the phrase.');" /><br><br>
+<img onclick="searchMusic()" src="https://dl.dropboxusercontent.com/u/126940227/Search%20for%20Music.gif" height="48" width="200">
+</form>
+ 
+<script>
+function searchMusic() {
+    var x = document.getElementById("music");
+    var country = document.getElementById("country").value;
+    if(x.elements[0].value == "") {
+        document.getElementById("titleonly").checked = false;
+        document.getElementById("exact").checked = false;
+    }
+    var query = x.elements[0].value;
+    if (document.getElementById("exact").checked == true) {
+        query = "%22" + x.elements[0].value + "%22";
+    }
+    if (document.getElementById("titleonly").checked == false) {
+    if (document.getElementById("price").value != "all") {
+    window.open('http://google.com/search?q=' + query + ' site:itunes.apple.com%2F' + country + '%2Falbum+%22%24' +  document.getElementById("price").value + '%22', '_blank');
+    } else {
+    window.open('http://google.com/search?q=' + query + ' site:itunes.apple.com%2F' + country + '%2Falbum', '_blank');
+    }
+    } else {
+if (document.getElementById("price").value != "all") {
+    window.open('http://google.com/search?q=intitle:%22' + x.elements[0].value + '%22 site:itunes.apple.com%2F' + country + '%2Falbum+%22%24' +  document.getElementById("price").value + '%22', '_blank');
+    } else {
+    window.open('http://google.com/search?q=intitle:%22' + x.elements[0].value + '%22 site:itunes.apple.com%2F' + country + '%2Falbum', '_blank');
+    }
+    }
+}
+</script>
+ 
+ 
+</body>
+</html>
