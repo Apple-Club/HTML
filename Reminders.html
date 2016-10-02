@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us">
+<head>
+<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+<title></title>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<style type="text/css">
+#news-container {
+	/*widget_width*/width:900px;
+  	/*widget_height*/height:50px;
+  	/*frame_border_color*/border:1px solid #000000;
+}
+
+#news-container {/*font_family*/font-family:Lucida Sans Unicode,Lucida Grande,sans-serif;/*font_size*/font-size:12px;/*font_color*/color:#ff0000;text-align:center;padding: 5px;margin: 0;-khtml-border-radius:4px; -ms-border-radius:4px; -o-border-radius:4px; -moz-border-radius:4px; -webkit-border-radius:4px; border-radius:4px;}
+table#feed-table {margin:0;padding:0;vertical-align:middle;border-collapse: collapse;border:none;width: 100%;height: 100%;text-align:center;}
+#feed-table tr {height: 100%;}
+#feed-table tr,#feed-table td {margin:0;padding:0;border:none;}
+#feed-table td#feed-title {font-weight: bold;width: 100px;}
+#feed-table td#feed-dots {text-align:left;width: 80px;}
+#feed-table td#feed-content div {margin: 0 10px;padding: 0;text-align: left;position: relative;overflow: hidden;}
+td#feed-content div table {position: absolute;top: 0px;left: 0px;margin: 0;padding: 0;border-collapse: collapse;border: none;display: none;vertical-align: middle;-moz-opacity:1; filter:alpha(opacity=100); opacity:1;z-index :0;}
+td#feed-content table td.text-content {line-height: 150%;text-align: left;}
+td#feed-content div table.current {display: inline-table;z-index: 1;}
+#feed-content table tr,#feed-content table td {margin:0;padding:0;}
+#feed-content table td img {margin: 0 15px 0 10px;padding: 0;border: none;display:block;}
+td#feed-content table td.text-content a:link {color:#0088CC;text-decoration:none;outline:none;}
+td#feed-content table td.text-content a:visited {color:#0088CC;text-decoration:none;}
+td#feed-content table td.text-content a:hover {color:#0088CC;text-decoration:underline;}
+td#feed-content table td.text-content a:active {color:#0088CC;text-decoration:underline;}
+a.feed-readmore {background: url('https://sites.google.com/site/appleclubinterface/home/readmore.gif') no-repeat center right; padding: 0 8px 0 0; outline:none;}
+.dots-nav {height: 8px; text-align:center;margin: 0;padding:0;line-height:0;letter-spacing:0px;word-spacing:0px;}
+.dots-nav li,.dots-nav li a { display:-moz-inline-stack; display:inline-block; *display:inline; zoom:1;}
+.dots-nav li { position:relative; margin-right:8px; width:8px; height:8px; overflow:hidden; }
+.dots-nav li.last-dot { margin-right: 0; }
+.dots-nav li a { position:absolute; width:8px; height:24px; top:0; left:0; outline:none; cursor:pointer; text-indent:-9999px; line-height:0; background:url('https://sites.google.com/site/appleclubinterface/home/gray-dot-small.png') no-repeat 0 0; }
+.dots-nav li a:hover { top:-8px; }
+.dots-nav li a.active { cursor:default; top:-16px; opacity:1; -moz-opacity:1;}
+.shadow { -webkit-box-shadow: rgba(0,0,0,0.35) 0 1px 3px; -moz-box-shadow: rgba(0,0,0,0.35) 0 1px 3px; box-shadow: rgba(0,0,0,0.35) 0 1px 3px;}
+</style>
+
+<script type="text/javascript">
+var contents=[/*begin to insert contents*/
+{image:'https://sites.google.com/site/appleclubfhs/home/Alert.jpg',text:'Reminder: Update to iOS 6.1.6 (iPhone 3GS and iPod touch 4th generation only)! <a class="feed-readmore" href="http://sites.google.com/site/appleclubfhs/support/advice-and-articles/updating-ios" target="_top">See this page</a>'},
+{image:'https://sites.google.com/site/appleclubfhs/home/Alert.jpg',text:'Reminder: Upgrade your Mac to OS X Mavericks 10.9.4! <a class="feed-readmore" href="http://sites.google.com/site/appleclubfhs/support/advice-and-articles/updating-mac-os" target="_top">See this page</a>'},
+{image:'https://sites.google.com/site/appleclubfhs/home/Alert.jpg',text:'Reminder: Update to iTunes 11.2.2! <a class="feed-readmore" href="http://apple.com/itunes/download" target="_blank">See this page</a>'},
+{image:'https://sites.google.com/site/appleclubfhs/home/Alert.jpg',text:'Reminder: Enroll in Apple&#39;s beta program to try out OS X Yosemite! <a class="feed-readmore" href="http://beta.apple.com/sp/betaprogram" target="_blank">See this page</a>'}
+/*end to insert contents*/];
+
+/*var_type*/var type=0; // 0: TEXT, 1: RSS, 2: XML 3: data from Twitter
+/*var_rssfeedURL*/var rssfeedURL="http://"; // e.g.) http://www.engadget.com/rss.xml
+/*var_newsURL*/var newsURL=""; // Your News XML file URL e.g.) /data/news.xml
+/*var_twitterid*/var twitterid=""; // e.g.) plugidea
+/*var_autostart*/var autostart=true;
+/*var_animation_time*/var animation_time=2000;
+/*var_pause_time*/var pause_time=5000;
+/*var_thumbnail_ratio*/var thumbnail_ratio=1.78;
+/*var_max_letters*/var max_letters=100;
+/*var_content_from_title*/var content_from_title=true;
+/*var_word_link*/var word_link="See this page";
+/*var_target_window*/var target_window="_top";
+
+/* don't change this script line */
+$(document).ready(function(){switch(type){case 0:setupfeeds();break;case 2:$.get(newsURL,{},function(a){getItems(a);setupfeeds()},"xml");break;default:getRSSfeeds();break}});function setupfeeds(){var g=$("#feed-content div");var e=g.height();if(e==0){e=$("#news-container").height();g.height(e+"px")}var d=Math.round(e*0.85);$("#separator").css({"background-color":$("#news-container").css("border-top-color"),height:d+"px"});var c=Math.round(d*thumbnail_ratio);var h=$("#dots");var a=null;for(var f=0;f<contents.length;f++){var b;b=(f==0)?'<table class="current" id="content_'+(f+1)+'" style="height:'+e+'px;"><tr>':'<table id="content_'+(f+1)+'" style="height:'+e+'px;"><tr>';if(type==1){if(contents[f].image){b+='<td><img style="max-width: '+c+"px; max-height: "+d+'px;" src="'+contents[f].image+'" /></td>'}}else{if(contents[f].image){b+='<td><img class="shadow" style="max-width: '+c+"px; max-height: "+d+'px;" src="'+contents[f].image+'" /></td>'}}b+='<td class="text-content">';b+=contents[f].text;b+="</td></tr></table>";g.append(b);if(f==(contents.length-1)){h.append('<li class="last-dot"><a id="dot_'+(f+1)+'">'+(f+1)+"</a></li>")}else{if(f==0){h.append('<li><a id="dot_'+(f+1)+'" class="active">'+(f+1)+"</a></li>")}else{h.append('<li><a id="dot_'+(f+1)+'">'+(f+1)+"</a></li>")}}}function k(m){if(autostart){l()}if($(this).hasClass("active")){return false}$(".dots-nav ul li a").css({cursor:"default"}).unbind("click");var i=$(this).text();$(".active").removeClass("active");$(this).addClass("active");$(".current",g).fadeOut(animation_time,function(){$(this).removeClass("current")});$("#content_"+i).fadeIn(animation_time,function(){$(this).addClass("current");$(".dots-nav ul li a").css({cursor:"pointer"}).bind("click",k);$("#dot_"+i).addClass("active").css({cursor:"default"})});return false}$(".dots-nav ul li a").bind("click",k);if(autostart&&contents.length>1){a=setTimeout(j,animation_time+pause_time)}function j(){$(".dots-nav ul li a").css({cursor:"default"}).unbind("click");var i=getindex(parseInt($(".active",h).text(),10)+1);$(".active").removeClass("active");$("#dot_"+i).addClass("active");$(".current",g).fadeOut(animation_time,function(){$(this).removeClass("current")});$("#content_"+i).fadeIn(animation_time,function(){$(this).addClass("current");$(".dots-nav ul li a").css({cursor:"pointer"}).bind("click",k);$("#dot_"+i).addClass("active").css({cursor:"default"});a=setTimeout(j,pause_time)})}function l(){if(a){clearTimeout(a);$(":animated").stop(true,true)}autostart=false;a=null}}function getindex(b){var a;switch(b){case 0:a=contents.length;break;case contents.length+1:a=1;break;default:a=b;break}return a}function getRSSfeeds(){while(contents.length){contents.pop()}loadrssfeed()}function getItems(a){while(contents.length){contents.pop()}var b=$("item",a);b.each(function(d){var e=truncate($(this).attr("title"),max_letters);var c=$(this).attr("url");if(c){e+='<a href="'+c+'" target="'+target_window+'" class="feed-readmore">'+word_link+'</a>'}contents.push({image:$(this).attr("image"),text:e});d++;if(d>2){return false}})}function truncate(c,a,b){if(c.length<=a){return c+" "}if(b==undefined){b="..."}return c.substr(0,a).replace(/\s+?(\S+)?$/g,"")+b}function loadrssfeed(){var a={date:true,content:true,snippet:false,showerror:true,errormsg:"",key:null};return $(this).each(function(c,f){var b=$(f);if(rssfeedURL==null){return false}if(type==3){content_from_title=true;rssfeedURL="https://api.twitter.com/1/statuses/user_timeline.rss?screen_name="+twitterid}var d="http://ajax.googleapis.com/ajax/services/feed/load?v=1.0&callback=?&q="+encodeURIComponent(rssfeedURL);d+="&num=3";if(a.key!=null){d+="&key="+a.key}$.getJSON(d,function(e){if(e.responseStatus==200){_callback(f,e.responseData.feed,a)}else{if(a.showerror){if(a.errormsg!=""){var g=a.errormsg}else{var g=e.responseDetails}}}})})}var _callback=function(h,a,b){if(!a){return false}for(var c=0;c<a.entries.length;c++){var f=a.entries[c];var g=p_parseContent(f.content,c+1);var d=f.title;if(type==3){d=d.slice(twitterid.length+1)};if(content_from_title){d=truncate(d, max_letters)}else{$("#news-container").append('<div id="rssfeed_content_temp" style="display:none;">'+g.content+'</div>');d=truncate($("#rssfeed_content_temp").text(), max_letters);$("#rssfeed_content_temp").remove()};d+='<a href="'+f.link+'" target="'+target_window+'" class="feed-readmore">'+word_link+'</a>';contents.push({image:g.inlineImages,text:d})}setupfeeds()};function p_parseContent(l,c){var m=null;var g="";var b=document.createElement("div");b.style.position="absolute";b.style.visibility="hidden";b.innerHTML=l;function j(e){return e.replace(/&/g,"&").replace(/</g,"<").replace(/>/g,">")}function k(p){if(p.textContent){return p.textContent}if(p.innerText){return p.innerText}var e="";if(p.nodeType==1){var o=p.childNodes;for(var n=0;n<o.length;++n){e=e+k(o[n])}}else{if(p.nodeType==3){return p.nodeValue}}return e}try{function h(o,n){var e="";if(o){for(var p=0,q=o.length;p<q;p++){e+=a(o[p],n)}}return e}function a(p,i){var e="";if(p.nodeType==3){if(p.nodeValue){e+=j(p.nodeValue)}}else{if(p.nodeType==1){var o=p.childNodes;var n=p.tagName;n=n?n.toLowerCase():"";if(n=="a"){e+='<a href="'+p.getAttribute("href")+'" target="_blank">';e+=h(o,true);e+="</a>"}else{if(n=="img"&&i){e+=p.getAttribute("alt")||""}else{if(n=="b"||n=="i"||n=="s"||n=="u"){e+="<"+n+">";e+=h(o,i);e+="</"+n+">"}else{if(n=="p"){e+=h(o,i)}else{if(n=="br"){}else{e+=h(o,i)}}}}}}}return e}g=a(b,false)}catch(f){g=k(b)}var d=$("img",b);if(d&&d.length>0){m=$(d).attr("src")}return{content:g,inlineImages:m}};
+</script>
+</head>
+<body style="background: transparent; margin: 0pt;">
+<div id="news-container">
+<table id="feed-table"><tr><td id="feed-title"><!--var_set_title-->Reminders</td>
+<td id="feed-dots"><div class="dots-nav"><ul id="dots" style="list-style:none;padding:0;margin:0;"></ul></div></td>
+<td style="width:1px;"><div id="separator"></div></td><td id="feed-content"><div></div></td></tr></table></div>
+</body>
+</html>
