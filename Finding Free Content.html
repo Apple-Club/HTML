@@ -1,0 +1,67 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us">
+<head>
+<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="cache-control" content="no-cache" />
+<meta http-equiv="expires" content="-1" />
+<title></title>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script type="text/javascript" src="https://apple-club.github.io/HTML/Carousel.js"></script>
+
+<style type="text/css">
+#carousel-container {
+	/*widget_width*/width:1000px;
+	/*widget_height*/height:588px;
+}
+
+#carousel-container {margin: 0;padding: 0;overflow: hidden;-khtml-border-radius:4px; -ms-border-radius:4px; -o-border-radius:4px; -moz-border-radius:4px; -webkit-border-radius:4px; border-radius:4px;}
+#iframe-viewer {width: 100%;background: url('https://sites.google.com/site/appleclubinterface/home/carousel-top-background.png') no-repeat;margin: 0;padding: 0;overflow: hidden;position: relative;}
+#iframe-display {position: absolute;top: 0;left: 0;vertical-align: middle;text-align: center;margin: 0;padding: 0;display: inline;}
+#iframe-display iframe {display: none;z-index: 0;position: absolute;}
+#browser {margin: 0;padding: 0;}
+.jcarousel-container-horizontal {width: inherit;height: 88px;background: url('https://sites.google.com/site/appleclubinterface/home/carousel-bottom-background.png') no-repeat center;border: none;margin: 0;padding: 0;}
+#carousel-items li,.jcarousel-item-horizontal,.jcarousel-item-placeholder-horizontal {width: 140px;height: 66px;} 
+.jcarousel-item div p{width:65px;height:48px;float:right;margin: 0;padding: 0;text-align: left;text-decoration:none;vertical-align: middle;font: 11px "Lucida Grande", "Lucida Sans Unicode", "Trebuchet MS", Trebuchet, Arial, sans-serif;color: #cccccc;overflow:hidden;white-space: -moz-pre-wrap;white-space: -pre-wrap;white-space: -o-pre-wrap;white-space: pre-wrap;word-wrap: break-word;}
+.jcarousel-next-horizontal {position: absolute;top: 0;right: 10px;width: 21px; height: 100%;cursor: pointer;border: 0;background: url('https://sites.google.com/site/appleclubinterface/home/next-gray-button.png') no-repeat center;}
+.jcarousel-next-disabled-horizontal {cursor: default;background: url('https://sites.google.com/site/appleclubinterface/home/next-gray-button-disabled.png') no-repeat center;}
+.jcarousel-prev-horizontal {position: absolute;top: 0;left: 10px;width: 21px;height: 100%;cursor: pointer;border: 0;background: url('https://sites.google.com/site/appleclubinterface/home/prev-gray-button.png') no-repeat center;}
+.jcarousel-prev-disabled-horizontal {cursor: default;background: url('https://sites.google.com/site/appleclubinterface/home/prev-gray-button-disabled.png') no-repeat center;}
+
+/* thumbnail with caret and label navs */
+.jcarousel-item div.thumb-nav { text-align: center; padding:0; margin:0; color: white; vertical-align: middle;}
+.jcarousel-item div.thumb-nav a {width: 122px; height: 48px; padding:9px;background: none;cursor: pointer; display: block; *display: inline; outline: none;}
+.jcarousel-item div.thumb-nav a img { width: 48px; height: 48px; padding:0; margin:0; border: none; float: left;/*thumbnail_shape*/-khtml-border-radius:4px; -ms-border-radius:4px; -o-border-radius:4px; -moz-border-radius:4px; -webkit-border-radius:4px; border-radius:4px;}
+.jcarousel-item div.thumb-nav a:hover { background: url('https://sites.google.com/site/appleclubinterface/home/carousel-item-background.png') 0 -66px; }
+.jcarousel-item div.thumb-nav a.active { background: url('https://sites.google.com/site/appleclubinterface/home/carousel-item-background.png') 0 0px; cursor: default; }
+
+#carousel-container a {text-decoration:none;}
+#carousel-container a.active p,#carousel-container a.active:link p{color:#ffffff;}
+#carousel-container a:link p,#carousel-container a:visited p{color:#cccccc;}
+#carousel-container a:hover p,#carousel-container a:active p{color:#ffffff;}
+</style>
+
+<script type="text/javascript">
+/*var_mode*/var mode=1; // 1: items in the array, 2: items from data.xml
+/*var_dataURL*/var dataURL="http://yourdomain/data/data.xml";
+/*var_icon_folder_path*/var icon_folder_path="https://dl.dropboxusercontent.com/u/126940227/";
+/*var_autoplay*/var autoplay=false;
+/*var_pause_time*/var pause_time=7000;
+
+var carousels=[/*begin to insert contents*/
+{name:'Instructions', icon:'Info.png', title:'Instructions', iframe:'http://sites.google.com/site/appleclubinterface/freecontent', width:1000, height:500},
+{name:'Music', icon:'Music.png', title:'Music', iframe:'http://sites.google.com/site/appleclubinterface/music', width:1000, height:500},
+{name:'Movies', icon:'Movies.png', title:'Movies', iframe:'http://sites.google.com/site/appleclubinterface/movies', width:1000, height:500},
+{name:'TV Shows', icon:'TV Shows.png', title:'TV Shows', iframe:'http://sites.google.com/site/appleclubinterface/tv-shows', width:1000, height:500},
+{name:'Apps', icon:'Apps.png', title:'Apps', iframe:'http://sites.google.com/site/appleclubinterface/apps', width:1000, height:500},
+{name:'Books', icon:'Books.png', title:'Books', iframe:'http://sites.google.com/site/appleclubinterface/books', width:1000, height:500}
+/*end to insert contents*/];
+
+/* don't change this script line */
+var dimensions={width:0,height:0};var iframe_display;var iframes=[];var timer=null;var visible_items=1;function mycarousel_itemLoadCallback(c,b){if(b!="init"){return}for(var a=1;a<=carousels.length;a++){iframe_display.append('<iframe id="page-'+a+'" width="'+carousels[a-1].width+'" height="'+carousels[a-1].height+'" allowTransparency="true" frameborder="0" scrolling="no" style="border:none;"  src="'+carousels[a-1].iframe+'"></iframe>')}for(var a=1;a<=carousels.length;a++){if(a==1){c.add(a,'<div class="thumb-nav"><a class="active" id="photothumb_'+a+'" title="'+carousels[a-1].title+'"><img src="'+icon_folder_path+carousels[a-1].icon+'"/><p>'+carousels[a-1].name+"</p></a></div>");showframe(a,true)}else{c.add(a,'<div class="thumb-nav"><a id="photothumb_'+a+'" title="'+carousels[a-1].title+'"><img src="'+icon_folder_path+carousels[a-1].icon+'"/><p>'+carousels[a-1].name+"</p></a></div>")}}c.size(carousels.length);$(".jcarousel-next-horizontal").click(function(){if(autoplay){stoptransition()}});$(".jcarousel-prev-horizontal").click(function(){if(autoplay){stoptransition()}})}function thumbclick(b){if($(this).hasClass("active")){return false}stoptransition();$(".thumb-nav a").css({cursor:"default"}).unbind("click");target_num=this.id.split("_");var a=target_num[1];showframe(a,true);return false}function showframe(a,d){var c={width:"0",height:"0"};c.width=(dimensions.width-parseInt(carousels[a-1].width,10))/2;c.width+="px";c.height=(dimensions.height-parseInt(carousels[a-1].height,10))/2;c.height+="px";if($(".current").attr("id")){target_num=$(".current").attr("id").split("-");var b=target_num[1];$(".current").removeClass("current");$("#page-"+b).css({"z-index":carousels.length-b}).fadeOut(1000)}$(".active").removeClass("active");$("#photothumb_"+a).addClass("active").css({cursor:"default"});$("#page-"+a).css({left:c.width,top:c.height,"z-index":carousels.length}).fadeIn(1000,function(){$(this).addClass("current");$(".thumb-nav a").css({cursor:"pointer"}).bind("click",thumbclick);$("#photothumb_"+a).css({cursor:"default"});if(!d){$("#carousel-items").jcarousel("scroll",a)}if(autoplay&&carousels.length>1){timer=setTimeout(changecontent,pause_time)}})}function changecontent(b){$(".thumb-nav a").css({cursor:"default"}).unbind("click");target_num=$(".active").attr("id").split("_");var a=target_num[1];a++;showframe(a>carousels.length?1:a,false)}function stoptransition(){if(timer){clearTimeout(timer);$(":animated",iframe_display).stop(true,true)}autoplay=false;timer=null}function rendercarousel(){$("#carousel-items").jcarousel({visible:visible_items,scroll:visible_items,itemLoadCallback:mycarousel_itemLoadCallback})}function loaditems(a){while(carousels.length){carousels.pop()}var b=$("item",a);b.each(function(c){carousels.push({name:$(this).attr("name"),icon:$(this).attr("icon"),title:$(this).attr("title"),iframe:$(this).attr("iframe"),width:$(this).attr("width"),height:$(this).attr("height")})})}$(document).ready(function(){iframe_display=$("#iframe-display");$("#iframe-viewer").height(($("#carousel-container").height()-88)+"px");dimensions.width=$("#iframe-viewer").width();dimensions.height=$("#iframe-viewer").height();visible_items=Math.floor(($("#carousel-container").width()-70)/140);var d=($("#carousel-container").width()-70)-(140*visible_items);var a=document.createElement("style");var c=".jcarousel-clip-horizontal {top:11px;left:35px;width:"+(Math.min(($("#carousel-container").width()-70),((Math.ceil((d/visible_items)/2)+Math.floor((d/visible_items)/2))*visible_items+140*visible_items)))+"px;height:66px;padding: 0;margin: 0;} ";c+="#carousel-items li {margin-left: "+Math.ceil((d/visible_items)/2)+"px; margin-right:"+Math.floor((d/visible_items)/2)+"px;}";a.setAttribute("type","text/css");if(a.styleSheet){a.styleSheet.cssText=c}else{var b=document.createTextNode(c);a.appendChild(b)}document.getElementsByTagName("head")[0].appendChild(a);switch(mode){case 2:$.get(dataURL,{},function(e){loaditems(e);rendercarousel()},"xml");break;default:rendercarousel();break}});
+</script>
+</head>
+<body style="background: transparent; margin: 0pt;">
+<div id="carousel-container"><div id="iframe-viewer"><div id="iframe-display"></div></div><div id="browser"><ul id="carousel-items"></ul></div></div>
+</body>
+</html>
