@@ -1,0 +1,110 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us">
+<head>
+<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+<title></title>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script type="text/javascript" src="https://apple-club.github.io/HTML/Carousel.js"></script>
+<script type="text/javascript" src="https://apple-club.github.io/HTML/Easing.js"></script>
+<style type="text/css">
+#container {
+	/*widget_width*/width:700px;
+	/*widget_height*/height:200px;
+	/*font_family*/font-family:Lucida Sans Unicode,Lucida Grande,sans-serif;
+	border: 1px solid #c8c8c8;
+}
+.text-holder {/*font_size*/font-size:11px;/*font_color_normal*/color:#7f7f7f;}
+.page li a:hover .text-holder{/*font_color_hover*/color:#000000;}
+#item-viewer {/*background_color*/background-color:transparent;/*viewer_padding*/padding:10px;}
+#container {-khtml-border-radius:4px; -ms-border-radius:4px; -o-border-radius:4px; -moz-border-radius:4px; -webkit-border-radius:4px; border-radius:4px;position:relative;overflow:hidden;padding:0;margin:0;text-align:center;}
+#itemnavi {width: 100%;position:relative;overflow:hidden;}
+.item-container{position:absolute;z-index:0;width:100%;height:100%;}
+.item-browser{list-style:none; margin: 0;padding: 0;}
+#group-indicator div { width:100%; margin:0 auto;}
+#group-indicator{position:absolute;bottom:0;font-size:11px;display:block;width: 100%;height:30px;background:url('https://sites.google.com/site/appleclubinterface/home/gallery-bottom-shadow.png') repeat-x top;background-color:#e8e8e8;background:-moz-linear-gradient(center bottom, rgba(223,223,223,1) 0%, rgba(242,242,242,1) 66%, rgba(242,242,242,1) 90%, rgba(230,230,230,1) 93%, rgba(190,190,190,1) 96%, rgba(150,150,150,1) 100%);background:-webkit-gradient(linear, left bottom, left top, from(rgba(223,223,223,1)), color-stop(66%, rgba(242,242,242,1)), color-stop(90%, rgba(242,242,242,1)), color-stop(93%, rgba(230,230,230,1)), color-stop(96%, rgba(210,210,210,1)), to(rgba(140,140,140,1)));}
+#group-indicator a{color:#7f7f7f;display:inline-block;margin:0 15px;padding:8px 0 6px;cursor:pointer;-webkit-transition:color linear .2s;-moz-transition:color linear .2s;-o-transition:color linear .2s;transition:color linear .2s;}
+#group-indicator a:hover{color:#000;text-decoration:none;}
+#group-indicator a.active {color:#2b2b2b;cursor:default;text-shadow:#fff 0 1px 0;}
+b.caret {display:block;position:absolute; width:13px; height:8px;margin:0 0 -8px -7px;background:url('https://sites.google.com/site/appleclubinterface/home/caret_active.png') no-repeat;display:none;}
+#item-viewer {margin:0;overflow: hidden;position:relative;}
+.jcarousel-container-horizontal {width: 100%;height: 100%;margin: 0;padding: 0;}
+.jcarousel-clip-horizontal {top: 0px;left: 0px;width: 100%;height: 100%;}
+.page {width: 100%;height: 100%;list-style:none; margin: 0;padding: 0;}
+.page li {float:left;padding:0;margin:0;/*margin_right*/margin-right:4px;/*margin_bottom*/margin-bottom:4px;/*max_thumb_width*/width:167px;/*max_thumb_height*/height:117px;position:relative;overflow:hidden;}
+.page li.lastcol {margin-right:0;}
+.page li.lastrow {margin-bottom:0;}
+.page li img {border: none;position:absolute;}
+.page a {text-decoration: none;}
+.page li a{cursor:pointer;}
+.text-holder {position:absolute;bottom:0;text-align:center;height:16px;line-height:16px;clear: both;width: 100%;padding:0;padding-top:4px;margin: 0;}
+.text-holder a,.text-holder a:link,.text-holder a:visited, .text-holder a:hover,.text-holder a:active {outline: none;color:inherit;text-decoration: none;}
+.controller {text-align:right;margin-bottom:10px;display:none;}
+.page-controller {list-style: none;width: 100px;height: 23px;text-align:center;padding: 0;margin: 0;display: inline-block;font-family:Arial, Helvetica, sans-serif;font-size:12px;color: white;line-height: 23px;word-spacing:2px;}
+.page-controller li {margin: 0;padding: 0;float: left;display: block;text-align:center;}
+.page-controller li img {border: none;padding: 3px;}
+.page-controller .left-corner {width: 22px;height: 100%;background: url('https://sites.google.com/site/appleclubinterface/home/pagination_corner_left.png') no-repeat;}
+.page-controller .center-corner {width: 56px;height: inherit;background: url('https://sites.google.com/site/appleclubinterface/home/pagination_bkgd_middle.png') no-repeat;}
+.page-controller .right-corner {width: 22px;height: inherit;background: url('https://sites.google.com/site/appleclubinterface/home/pagination_corner_right.png') no-repeat;}
+.page-controller .page-prev{width:16px;height:17px;background: url('https://sites.google.com/site/appleclubinterface/home/pagination_arrow_left.png') no-repeat center;}
+.page-controller .page-next{width:16px;height:17px;background: url('https://sites.google.com/site/appleclubinterface/home/pagination_arrow_right.png') no-repeat center;}
+.page-arrow-disabled {cursor: default;opacity: .5;-moz-opacity: .5;filter: alpha(opacity=50);}
+</style>
+<script type="text/javascript">
+var contents=[/*begin to insert contents*/
+{group:0,image:'https://sites.google.com/site/appleclubfhs/products/a1509/iPod%20touch%205th%20generation%2016GB.png',width:62,height:125,desc:'iPod touch',link:'https://sites.google.com/site/appleclubfhs/reviews/ipod/ipod-touch/'},
+{group:1,image:'https://sites.google.com/site/appleclubfiles/home/iPhone%207.png',width:75,height:149,desc:'iPhone',link:'https://sites.google.com/site/appleclubfhs/reviews/iphone/'},
+{group:0,image:'https://sites.google.com/site/appleclubfhs/products/a1373/iPod%20shuffle%204th%20generation.png',width:92,height:87,desc:'iPod shuffle',link:'https://sites.google.com/site/appleclubfhs/reviews/ipod/ipod-shuffle'},
+{group:0,image:'https://sites.google.com/site/appleclubfhs/products/a1238/iPod%20classic%206th%20generation.png',width:86,height:137,desc:'iPod classic',link:'https://sites.google.com/site/appleclubfhs/reviews/ipod/ipod-classic'},
+{group:2,image:'https://sites.google.com/site/appleclubfhs/products/a1474/iPad%20Air.png',width:105,height:132,desc:'iPad',link:'https://sites.google.com/site/appleclubfhs/reviews/ipad/ipad'},
+{group:2,image:'https://sites.google.com/site/appleclubfhs/products/a1432/iPad%20mini.png',width:71,height:102,desc:'iPad mini',link:'https://sites.google.com/site/appleclubfhs/reviews/ipad/ipad-mini'},
+{group:0,image:'https://sites.google.com/site/appleclubfhs/products/iPod%20nano%207th%20generation.png',width:52,height:101,desc:'iPod nano',link:'https://sites.google.com/site/appleclubfhs/reviews/ipod/ipod-nano'},
+{group:0,image:'https://sites.google.com/site/appleclubfhs/products/a1051/iPod%20mini.png',width:72,height:120,desc:'iPod mini',link:'https://sites.google.com/site/appleclubfhs/reviews/ipod/ipod-mini'},
+{group:3,image:'https://sites.google.com/site/appleclubfiles/home/Apple%20Watch.jpg',width:100,height:141,desc:'Apple Watch',link:'https://sites.google.com/site/appleclubfhs/reviews/watch'},
+{group:4,image:'https://sites.google.com/site/appleclubfhs/products/a1427/Apple%20TV%202nd%20gen.png',width:153,height:141,desc:'Apple TV',link:'https://sites.google.com/site/appleclubfhs/reviews/apple-tv'},
+{group:5,image:'https://sites.google.com/site/appleclubfhs/products/MacBook%20Pro%202010.png',width:174,height:108,desc:'MacBook Pro',link:'https://sites.google.com/site/appleclubfhs/reviews/mac/macbook-pro'},
+{group:5,image:'https://sites.google.com/site/appleclubfiles/home/MacBook%20Air.PNG',width:174,height:108,desc:'MacBook Air',link:'https://sites.google.com/site/appleclubfhs/reviews/mac/macbook-air'},
+{group:5,image:'https://sites.google.com/site/appleclubfhs/products/MacBook.png',width:166,height:105,desc:'MacBook',link:'https://sites.google.com/site/appleclubfhs/reviews/mac/macbook'},
+{group:5,image:'https://sites.google.com/site/appleclubfiles/files/iBook%20G4.png',width:166,height:105,desc:'iBook',link:'https://sites.google.com/site/appleclubfhs/reviews/mac/ibook'},
+{group:5,image:'https://sites.google.com/site/appleclubfhs/products/PowerBook%20G4.PNG',width:166,height:105,desc:'PowerBook',link:'https://sites.google.com/site/appleclubfhs/reviews/mac/powerbook'},
+{group:5,image:'https://sites.google.com/site/appleclubfhs/products/iMac%202013%20off.png',width:111,height:100,desc:'iMac',link:'https://sites.google.com/site/appleclubfhs/reviews/mac/imac'},
+{group:5,image:'https://sites.google.com/site/appleclubfhs/products/Mac%20mini%20Late%202012.png',width:100,height:73,desc:'Mac mini',link:'https://sites.google.com/site/appleclubfhs/reviews/mac/mac-mini'},
+{group:5,image:'https://sites.google.com/site/appleclubfiles/files/Mac%20Pro%202013.jpg',width:100,height:171,desc:'Mac Pro',link:'https://sites.google.com/site/appleclubfhs/reviews/mac/mac-pro'},
+{group:5,image:'https://sites.google.com/site/appleclubfiles/home/Power%20Mac%20G5.png',width:120,height:261,desc:'Power Mac',link:'https://sites.google.com/site/appleclubfhs/reviews/mac/power-mac'},
+{group:5,image:'https://sites.google.com/site/appleclubfhs/products/Macintosh.png',width:128,height:128,desc:'Older Macs',link:'https://sites.google.com/site/appleclubfhs/reviews/mac/older-macs'},
+{group:6,image:'https://sites.google.com/site/appleclubfhs/products/Wireless%20keyboard.png',width:155,height:85,desc:'Keyboards',link:'https://sites.google.com/site/appleclubfhs/reviews/accessories/keyboard'},
+{group:6,image:'https://sites.google.com/site/appleclubfhs/products/Magic%20trackpad.png',width:90,height:90,desc:'Magic Trackpad',link:'https://sites.google.com/site/appleclubfhs/reviews/accessories/magic-trackpad'},
+{group:6,image:'https://sites.google.com/site/appleclubfhs/products/Magic%20mouse.png',width:70,height:114,desc:'Mice',link:'https://sites.google.com/site/appleclubfhs/reviews/accessories/mouse'},
+{group:6,image:'https://sites.google.com/site/appleclubfhs/products/AirPort%20Time%20Capsule.png',width:100,height:150,desc:'Wireless',link:'https://sites.google.com/site/appleclubfhs/reviews/accessories/wireless'},
+{group:6,image:'https://sites.google.com/site/appleclubfhs/products/EarPods.png',width:90,height:87,desc:'Headphones',link:'https://sites.google.com/site/appleclubfhs/reviews/accessories/headphones'},
+{group:6,image:'https://sites.google.com/site/appleclubfiles/home/Siri%20Remote.PNG',width:40,height:100,desc:'Remote',link:'https://sites.google.com/site/appleclubfhs/reviews/accessories/remote'},
+{group:7,image:'https://sites.google.com/site/appleclubfhs/products/Newton%20MessagePad%20110.png',width:80,height:135,desc:'Newton',link:'https://sites.google.com/site/appleclubfhs/reviews/other-devices/newton'},
+{group:7,image:'https://sites.google.com/site/appleclubfiles/home/QuickTake%20200.png',width:115,height:77,desc:'QuickTake',link:'https://sites.google.com/site/appleclubfhs/reviews/other-devices/quicktake'}
+/*end to insert contents*/];
+
+var thumb_dimension={/*var_thumb_width*/width:167,/*var_thumb_height*/height:117};
+/*var_num_col*/var num_col=4;
+/*var_num_row*/var num_row=1;
+/*var_start_index*/var start_index=0;
+/*var_animation_duration*/var animation_duration=1000; // millisecond
+/*var_target_window*/var target_window="_top";
+/*var_easing_effect*/var easing_effect="easeInOutExpo";
+
+/* don't change this script line */
+function getcarouselindex(b){target_num=b.get(1).parents(".item-browser").attr("id").split("-");return target_num[1]}function mycarousel_itemLoadCallback(c,d){if(d!="init"){return}var e=getcarouselindex(c);$(".page-prev","#controller-"+e).bind("click",function(){c.prev()});$(".page-next","#controller-"+e).bind("click",function(){c.next()})}function mycarousel_itemVisibleInCallbackAfterAnimation(j,g,h,l){var i=getcarouselindex(j);var k=j.index(h);$(".center-corner","#controller-"+i).html(k+" of "+j.size());if(j.size()==1){return false}if(k==1){$(".page-prev","#controller-"+i).addClass("page-arrow-disabled").unbind("click").css({cursor:"default"});if($(".page-next","#controller-"+i).hasClass("page-arrow-disabled")){$(".page-next","#controller-"+i).removeClass("page-arrow-disabled").css({cursor:"pointer"}).bind("click",function(){j.next()})}}else{if(k==j.size()){$(".page-next","#controller-"+i).addClass("page-arrow-disabled").unbind("click").css({cursor:"default"});if($(".page-prev","#controller-"+i).hasClass("page-arrow-disabled")){$(".page-prev","#controller-"+i).removeClass("page-arrow-disabled").css({cursor:"pointer"}).bind("click",function(){j.prev()})}}else{if($(".page-prev","#controller-"+i).hasClass("page-arrow-disabled")){$(".page-prev","#controller-"+i).removeClass("page-arrow-disabled").css({cursor:"pointer"}).bind("click",function(){j.prev()})}if($(".page-next","#controller-"+i).hasClass("page-arrow-disabled")){$(".page-next","#controller-"+i).removeClass("page-arrow-disabled").css({cursor:"pointer"}).bind("click",function(){j.next()})}}}}function assign_space(){$("#itemnavi").css("height",$("#container").height()-63-(parseInt($("#item-viewer").css("padding-top"),10)*2)+"px");var c=".item-browser>li,.jcarousel-item-horizontal,.jcarousel-item-placeholder-horizontal {width: "+$("#itemnavi").width()+"px;height: "+$("#itemnavi").height()+"px;}";var b=document.createElement("style");b.setAttribute("type","text/css");if(b.styleSheet){b.styleSheet.cssText=c}else{var a=document.createTextNode(c);b.appendChild(a)}document.getElementsByTagName("head")[0].appendChild(b)}$(document).ready(function(){assign_space();for(var f=0;f<$("#group-indicator a").size();f++){var p=0;$("#itemnavi").append('<div class="item-container" style="left:'+$("#itemnavi").width()+'px;"><ul class="item-browser" id="itemlist-'+f.toString()+'"></ul></div>');for(var d=0;d<contents.length;d++){if(parseInt(contents[d].group,10)==f){var n="<li><a";if(contents[d].link.length>0){n+=' href="'+contents[d].link+'" target="'+target_window+'"'}n+=">";n+='<img src="'+contents[d].image+'" width="'+contents[d].width+'" height="'+contents[d].height+'" alt="'+contents[d].desc+'" /></a></li>';$("#itemlist-"+f.toString()).append(n)}}var l=num_col*num_row;p=Math.ceil($("#itemlist-"+f.toString()+" li").size()/l);for(var h=1;h<=p;h++){$("#itemlist-"+f.toString()).append('<li><ul class="page" id="page-'+f.toString()+"-"+h.toString()+'"></ul></li>')}var o=thumb_dimension.width;var d,k=0;d=thumb_dimension.height-20;k=20;$("#itemlist-"+f.toString()+" img").each(function(i){var e=e_width=$(this).width();var c=e_height=$(this).height();if(e>o){e_width=o;e_height=Math.round((c*e_width)/e);if(e_height>d){e_height=d;e_width=Math.round((e*e_height)/c)}}else{if(c>d){e_height=d;e_width=Math.round((e*e_height)/c);if(e_width>o){e_width=o;e_height=Math.round((c*e_width)/e)}}}$(this).css({"z-index":0,width:e_width+"px",height:e_height+"px",bottom:k+"px",left:Math.floor((o-e_width)/2)+"px"});var g="thumb-"+(i+1).toString();var b=Math.ceil((i+1)/l);if(((i+1)%l)%num_col==0){$(this).parents("li").addClass("lastcol")}if(Math.ceil((i+1)/num_col)==(num_row*b)){$(this).parents("li").addClass("lastrow")}$(this).parents("li").attr("id",g).appendTo("#page-"+f+"-"+b);$(this).show();if($(this).attr("alt").length>0){$(this).after('<p class="text-holder">'+$(this).attr("alt")+"</p>")}});$("#item-viewer").prepend('<div id="controller-'+f+'" class="controller"><ul class="page-controller"><li class="left-corner"><img class="page-prev page-arrow-disabled" src="https://googledrive.com/host/0B6W2C3whvuZdZnAxemM3TDVJSFk/images/img_trans.gif" /></li><li class="center-corner"></li><li class="right-corner"><img class="page-next page-arrow-disabled" src="https://googledrive.com/host/0B6W2C3whvuZdZnAxemM3TDVJSFk/images/img_trans.gif" /></li></ul></div>');if(p>0){$("#itemlist-"+f.toString()).jcarousel({visible:1,size:p,animation:animation_duration,scroll:1,easing:easing_effect,buttonNextHTML:null,buttonPrevHTML:null,itemLoadCallback:mycarousel_itemLoadCallback,itemVisibleInCallback:{onAfterAnimation:mycarousel_itemVisibleInCallbackAfterAnimation}})}}if(start_index<0||start_index>($("#group-indicator a").size()-1)){start_index=0}var a=$("#group-indicator a:eq("+start_index+")");$(".caret").css({left:(a.position().left+15+Math.round(a.width()/2))+"px"}).show();$("#itemlist-"+(a.index()-1)).parents(".item-container").css({"z-index":1}).animate({left:0},animation_duration,easing_effect,function(){$("#group-indicator a").bind("click",group_click)});$("#controller-"+(a.index()-1)).css({"z-index":1}).show();a.addClass("active")});function group_click(a){if($(this).hasClass("active")){return false}$("#group-indicator a").unbind("click");var d=$("#group-indicator a.active").index()-1;if(d>=0){$(".item-container:eq("+d+")").css({"z-index":0}).animate({left:-$("#itemnavi").width()+"px"},animation_duration,easing_effect,function(){$(this).css({left:$("#itemnavi").width()+"px"})})}$(".controller").css({"z-index":0}).hide();$("#group-indicator a").removeClass("active");$(".caret").animate({left:($(this).position().left+15+Math.round($(this).width()/2))+"px"},animation_duration,easing_effect);$("#itemlist-"+($(this).index()-1)).parents(".item-container").css({"z-index":1}).animate({left:0},animation_duration,easing_effect,function(){$("#group-indicator a").bind("click",group_click)});$("#controller-"+($(this).index()-1)).css({"z-index":1}).show();$(this).addClass("active")};
+</script>
+</head>
+<body style="background: transparent; margin: 0pt;">
+<div id="container"><div id="item-viewer"><div id="itemnavi"></div></div><div id="group-indicator"><div><b class="caret"></b>
+<!--begin to insert contents-->
+<a>iPod</a>
+<a>iPhone</a>
+<a>iPad</a>
+<a>Apple Watch</a>
+<a>Apple TV</a>
+<a>Mac</a>
+<a>Accessories</a>
+<a>Other Devices</a>
+<!--end to insert contents-->
+</div></div></div>
+</body>
+</html>
