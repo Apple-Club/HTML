@@ -1,0 +1,65 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us">
+<head>
+<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+<title></title>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script type="text/javascript" src="https://apple-club.github.io/HTML/Easing.js"></script>
+<script type="text/javascript" src="https://apple-club.github.io/HTML/InfiniteCarousel.js"></script>
+
+<style type="text/css">
+#wrap,#carousel,#carousel ul li img {
+	/*photo_width*/width:1006px;
+	/*photo_height*/height:570px;
+}
+
+#wrap {overflow: hidden;text-align:center;margin:0;padding:0;border: none;position:relative;}
+#carousel {position:absolute;overflow: hidden;}
+#carousel ul li img{border: none;}
+
+/* simple dot navs */
+#simple-nav li,#simple-nav li a { display:-moz-inline-stack; display:inline-block; *display:inline; zoom:1; }
+#simple-nav li { position:relative; margin-right:8px; width:13px; height:13px; *height: 12px; overflow:hidden; }
+#simple-nav li.last-dot { margin-right: 0; }
+#simple-nav li a { position:absolute; width:13px; height:38px; top:0; left:0; outline:none; cursor:pointer; text-indent:-9999px; line-height:0; }
+#simple-nav li a.hover { top:-13px; }
+#simple-nav li a.active { cursor:default; top:-26px; opacity:1; -moz-opacity:1; }
+
+#gallerygraydots li,#gallerygraydots li a { display:-moz-inline-stack; display:inline-block; *display:inline; zoom:1; }
+#gallerygraydots li { position:relative; margin-right:7px; width:13px; height:13px; overflow:hidden; }
+#gallerygraydots li.last-dot { margin-right: 0; }
+#gallerygraydots li a { position: absolute;top:0;left:0;width:13px; height:32px; _overflow: hidden; outline:none; cursor:pointer; background-position: 0 -13px;background-repeat:no-repeat;}
+#gallerygraydots li a.hover { background-position: 0 0; -moz-opacity:.8; filter:alpha(opacity=80); opacity:.80; }
+#gallerygraydots li a.active { cursor:default; background-position: 0 0;  -moz-opacity:1; filter:alpha(opacity=100); opacity:1; }
+#simple-nav,#simple-nav li,#gallerygraydots,#gallerygraydots li{/*var_banner_mode*/}
+</style>
+
+<script type="text/javascript">
+$(document).ready(function() {
+	$('#carousel').infiniteCarousel({
+	transitionSpeed:500,
+	/*var_displaytime*/displayTime:5000,
+	/*var_showcontrols*/showControls:true,
+	/*var_autostart*/autoStart:true,
+	imagePath:'https://sites.google.com/site/appleclubinterface/home/',
+	controlstyle:1,
+	easeLeft:'easeInOutQuint',
+	easeRight:'easeOutQuint'
+	});
+});
+</script>
+</head>
+
+<body style="background: transparent; margin: 0pt;">
+<div id="wrap"><div id="carousel"><ul style="list-style:none; margin:0; padding:0;position:relative;">
+<!--begin to insert contents-->
+<li><a href="https://sites.google.com/site/appleclubfhs/news/pr/02-14-16-apple-club-celebrates-5-000-000th-website-visitor" target="_top"><img src="https://dl.dropboxusercontent.com/u/126940227/5.0%20slide.gif" loop=infinite alt="5 million slide" /></a></li>
+<li><a href="https://sites.google.com/site/appleclubfhs/videos/06-30-16" target="_top"><img src="https://dl.dropboxusercontent.com/u/126940227/Keynote%20slide%2006-16.png" loop=infinite alt="Keynote slide 06-16" /></a></li>
+<li><a href="https://sites.google.com/site/appleclubfhs/downloads" target="_top"><img src="https://dl.dropboxusercontent.com/u/126940227/Apps%20slide.png" alt="Apps slide" /></a></li>
+<li><a href="https://sites.google.com/site/appleclubfhs/news/articles/09-09-15-apple-announces-huge-improvements-watch-ipad-tv-phone" target="_top"><img src="https://dl.dropboxusercontent.com/u/126940227/iPad%20Pro%20slide.png" alt="iPad Pro slide" /></a></li>
+<li><a href="https://sites.google.com/site/appleclubfhs/news/pr/01-25-16-the-apple-club-is-now-on-apple-news" target="_top"><img src="https://dl.dropboxusercontent.com/u/126940227/Apple%20News%20slide.png" alt="Apple News slide" /></a></li>
+<li><a href="https://sites.google.com/site/appleclubfhs/videos/steve-jobs-memorial" target="_top"><img src="https://sites.google.com/site/appleclubfiles/home/Steve%20Jobs%20Memorial%20Page%20front.png" alt="Steve Jobs slide" /></a></li>
+<!--end to insert contents-->
+</ul></div></div>
+</body>
+</html>
