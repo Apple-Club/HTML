@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<style type="text/css">
+.slidecontent_container {/*widget_width*/width:1003px;/*widget_height*/height:500px;/*font_size*/font-size:14px;/*font_family*/font-family:Lucida Sans Unicode,Lucida Grande,sans-serif;}
+.slidecontent_container,.slidecontent_section a {/*font_color*/color:#0095e0;}
+.slidecontent_section {/*vertical_padding*/padding:5px 0;border:none;/*border_top*/border-top:1px dotted #c8c8c8;margin:0;text-align:left;clear:both;}
+.slidecontent_section.item-first {border-top:none;}
+.slidecontent_button {padding-left:16px;outline:none;cursor:pointer;}
+.slidecontent_button.closed {background:url('https://dl.dropbox.com/s/w3r0swcphe7hxv2/arrow-closed.png') center left no-repeat;}
+.slidecontent_button.expanded {background:url('https://dl.dropbox.com/s/hlui7zapnuh3i2r/arrow-open.png') center left no-repeat;}
+.slide_contents {/*alt_background_color*/background-color:#ffffff;padding:7px 16px;margin:0;line-height:150%;display:none;}
+.slidecontent_section a {text-decoration:none;}
+.slidecontent_section a:hover {text-decoration:underline;}
+</style>
+
+<script type="text/javascript">
+function showslidecontent(c){var b;if(c.parent().next().hasClass("slide_contents")){b=c.parent().next()}else{b=c.parent().next().next()}if(c.hasClass("closed")){c.addClass("expanded");b.show();c.removeClass("closed")}}function closeslidecontent(c){var b;if(c.parent().next().hasClass("slide_contents")){b=c.parent().next()}else{b=c.parent().next().next()}if(c.hasClass("expanded")){c.addClass("closed");b.hide();c.removeClass("expanded")}}function slidecontentevent(){var d;if($(this).parent().next().hasClass("slide_contents")){d=$(this).parent().next()}else{d=$(this).parent().next().next()}var c=$(this);if(d.hasClass("slide_contents")){if(c.hasClass("closed")){c.off("click").css("cursor","default").addClass("expanded");d.slideDown(function(){c.removeClass("closed");c.on("click",slidecontentevent).css("cursor","pointer")})}else{if(c.hasClass("expanded")){c.off("click").css("cursor","default");d.slideUp(function(){c.removeClass("expanded").addClass("closed");c.on("click",slidecontentevent).css("cursor","pointer")})}}}};$(document).ready(function(){$(".slidecontent_button").on("click", slidecontentevent)});
+</script>
+</head>
+
+<body style="background: transparent; margin: 0pt;">
+<div class="slidecontent_container">
+<font size="3"><span style="font-family:arial,sans-serif">
+<!--begin to insert contents-->
+<div style="text-align:center">
+<div class="slidecontent_section item-first" style="font-weight:bold;text-align:center"><a class="slidecontent_button closed">Click here to verify that you have read the above, and understand how to start your download</a></div>
+<p class="slide_contents">
+<iframe src="https://apple-club.github.io/HTML/PayPal%20TabSnap.html"></iframe>
+</p>
+</div>
+<!--end to insert contents-->
+</span></font>
+</div>
+</body>
+</html>
