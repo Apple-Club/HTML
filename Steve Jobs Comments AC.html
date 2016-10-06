@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us">
+<head>
+<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+<title></title>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script type="text/javascript" src="https://apple-club.github.io/HTML/Ticker.js"></script>
+<style type="text/css">
+#ticker-container{
+	/*widget_width*/width:500px;
+	/*font_color*/color:#000000;
+	/*font_size*/font-size:16px;
+	/*font_family*/font-family:Lucida Sans Unicode,Lucida Grande,sans-serif;
+	min-height:16px;
+	line-height:125%;
+}
+#ticker-content ul li a{/*link_color*/color:#000000;}
+#ticker-container{margin: 0;padding: 0;overflow: hidden;}
+#ticker-content ul{width:100%;list-style:none;margin:0;padding:0;}
+#ticker-content ul li a:link,#feed-content ul li a:visited{text-decoration:none;outline:none;}
+#ticker-content ul li a:hover,#feed-content ul li a:active{text-decoration:underline;}
+</style>
+
+<script type="text/javascript">
+var xmldata=[/*begin to insert contents*/
+{title:'<b>Bruce C.</b><br>Great man that helped evolve technology and computer animation.', link:''},
+{title:'<b>Sitar H.</b><br>The Thomas Edison of our time.', link:''},
+{title:'<b>Michael B.</b><br>You changed our lives. All of your inventions will be remembered forever.', link:''},
+{title:'<b>Ryan L.</b><br>He was an amazing man who changed technology forever and inspired me.', link:''},
+{title:'<b>John M.</b><br>Apple Computer Co. (AKA Steve Jobs) changed my life. I first touched an Apple computer in 1982 and I knew then I was in love! I have only owned Apple computers all my life. When Apple was struggling (when Steve left and then first came back) I believed in him so much, I bought stock in the company. It ended up to be the BEST investment I ever made! Steve is now a legend! He will always remind me as a teacher to inspire creativity in my students and be careful not to stifle it. As Steve struggled with teachers who &#34;almost killed his creativity.&#34;', link:''},
+{title:'<b>Matthew L.</b><br>Nearly nine months after his passing, I still think about him often, as he was a great inspiration for me and many others. I love Steve&#39;s passion, his goal to revolutionize technology, and what a service he has done for the world. He was very modest, and did what he did for the people. He said that Apple builds products that the employees themselves would want to use. The enthusiasm he expressed when unveiling a new product shows his pride in what his company Apple has created. Steve is a large part of why I liked and will continue to like Apple. I often re-watch Steve&#39;s Keynotes to get me excited about Apple products all over again.', link:''}
+/*end to insert contents*/];
+
+/*var_ticker_mode*/var ticker_mode=0; // 0: data from array 1: data from RSS Feed 2: data from XML 3: data from Twitter
+/*var_feed_limit*/var feed_limit=20; // max:20
+/*var_feedURL*/var feedURL="http://";
+/*var_dataURL*/var dataURL="";
+/*var_twitterid*/var twitterid="";
+/*var_word_link*/var word_link="Go to this page";
+/*var_max_letters*/var max_letters=1000000;
+/*var_animation_duration*/var animation_duration=700;
+/*var_pause_time*/var pause_time=7000;
+/*var_target*/var target="_blank"; // "_top" (same) or "_blank" (new window)
+
+/* don't change this script line */
+function loaditems(d){while(xmldata.length){xmldata.pop()}var c=$("item",d);c.each(function(a){xmldata.push({title:$(this).attr("title"),link:$(this).attr("url")})})}function loadrssfeed(){var a={date:true,content:true,snippet:false,showerror:true,errormsg:"",key:null};return $(this).each(function(c,f){var b=$(f);if(feedURL==null){return false}if(ticker_mode==3){feedURL="https://api.twitter.com/1/statuses/user_timeline.rss?screen_name="+twitterid}var d="http://ajax.googleapis.com/ajax/services/feed/load?v=1.0&callback=?&q="+encodeURIComponent(feedURL);if(feed_limit!=null){d+="&num="+feed_limit}if(a.key!=null){d+="&key="+a.key}$.getJSON(d,function(e){if(e.responseStatus==200){_callback(f,e.responseData.feed,a)}})})}var _callback=function(h,a,c){if(!a){return false}for(var f=0;f<a.entries.length;f++){var g=a.entries[f];var b=g.title;if(ticker_mode==3){b=b.slice(twitterid.length+1)}var d='<li><a href="'+g.link+'" target="'+target+'" title="'+word_link+'">'+rss_truncate(b,max_letters)+"</a></li>";$("#ticker-content ul").append(d)}launchanimation()};function rss_truncate(c,a,b){if(c.length<=a){return c}if(b==undefined){b="..."}return c.substr(0,a).replace(/\s+?(\S+)?$/g,"")+b}function drawitems(){for(var b=0;b<xmldata.length;b++){var a="<li>";if(xmldata[b].link.length>0){a+='<a href="'+xmldata[b].link+'" target="'+target+'" title="'+word_link+'">'}a+=rss_truncate(xmldata[b].title,max_letters);if(xmldata[b].link.length>0){a+="</a>"}a+="</li>";$("#ticker-content ul").append(a)}launchanimation()}function launchanimation(){$("#ticker-content").vTicker({showItems:1,mousePause:true,pause:pause_time,speed:animation_duration,animation:"fade"})}$(document).ready(function(){switch(ticker_mode){case 0:drawitems();break;case 2:$.get(dataURL,{},function(a){loaditems(a);drawitems()},"xml");break;default:loadrssfeed();break}});
+</script>
+</head>
+<body style="background: transparent; margin: 0pt;">
+<div id="ticker-container"><div id="ticker-content"><ul></ul></div></div>
+</body>
+</html>
