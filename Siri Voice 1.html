@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us">
+<head>
+<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+<title></title>
+<link rel="stylesheet" href="https://apple-club.github.io/HTML/jplayer.css" type="text/css" media="screen" />
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script type="text/javascript" src="https://apple-club.github.io/HTML/jplayer.js"></script>
+
+<style type="text/css">
+.jplayer-container {
+	/*widget_width*/width:420px;
+	/*widget_height*/height:122px;
+	text-align:left;
+}
+div.jp-audio,
+div.jp-video {
+	/*font_size*/font-size:14px;
+	/*font_family*/font-family:Lucida Sans Unicode,Lucida Grande,sans-serif;
+	width:100%;
+	white-space:nowrap;
+}
+div.jp-type-playlist div.jp-playlist li.jp-playlist-current {background: url('https://sites.google.com/site/appleclubinterface/home/current-play-bullet.gif') no-repeat center left;}
+div.jp-playlist li img {/*max_cover_width*/max-width:32px;/*max_cover_height*/max-height:32px;border:none;margin-right:10px;vertical-align:middle;}
+div.jp-playlist {/*playlist_background_color*/background-color:#cccccc;}
+div.jp-type-playlist div.jp-playlist a {/*font_color*/color:#666666;}
+div.jp-type-playlist div.jp-playlist a:hover,div.jp-type-playlist div.jp-playlist a.jp-playlist-current {/*current_font_color*/color:#0d88c1;}
+ul.jp-controls li a.disabled {cursor: default;opacity: .5;-moz-opacity: .5;filter: alpha(opacity=50);}
+div.jp-interface,div.jp-playlist {border:none;}
+div.jp-interface {-khtml-border-radius:4px 4px 0 0; -ms-border-radius:4px 4px 0 0; -o-border-radius:4px 4px 0 0; -moz-border-radius:4px 4px 0 0; -webkit-border-radius:4px 4px 0 0; border-radius:4px 4px 0 0;}
+div.jp-playlist {-khtml-border-radius:0 0 4px 4px; -ms-border-radius:0 0 4px 4px; -o-border-radius:0 0 4px 4px; -moz-border-radius:0 0 4px 4px; -webkit-border-radius:0 0 4px 4px; border-radius:0 0 4px 4px;}
+</style>
+
+<script type="text/javascript">
+/*var_poster_use*/var poster_use=true;
+/*var_repeat*/var repeat=false;
+var audios=[/*begin to insert contents*/
+{name:'',mp3:'http://sites.google.com/site/appleclubfhs/test/Siri_1.mp3',poster:''}
+/*end to insert contents*/];
+
+/* don't change this script line */
+function loadfeedsource(r,n,m){return $(this).each(function(f){var b=$(f);var d="http://ajax.googleapis.com/ajax/services/feed/load?v=1.0&callback=?&q="+encodeURIComponent(r)+"&output=json_xml&num="+n;$.getJSON(d,function(e){if(e.responseStatus==200){getmediafromfeed(e.responseData,m)}})})}var getmediafromfeed=function(f,media){if(b=f.feed){var d=0;var n=f.xmlString;"Microsoft Internet Explorer"==navigator.appName?(d=new ActiveXObject("Microsoft.XMLDOM"),d.async="false",d.loadXML(n)):d=(new DOMParser).parseFromString(n,"text/xml");n=d.getElementsByTagName("item");var poster="";$(d).find("itunes\\:image,image").each(function(){poster = $(this).attr("href");if(poster){return false}});for (var i=0;i<b.entries.length;i++){d=i;var g=b.entries[i],k=g.link;if(0<n.length&&((k=$(n[i]).find("media\\:content,content"),0<k.length) || (k=$(n[i]).find("enclosure"),0<k.length))){var format=k[0].getAttribute("type").toLowerCase();var valid=0;for (var j=0;j<media.length;j++){if(format==media[j]){valid = j+1;break;}}if (valid) {var path = k[0].getAttribute("url");var image=poster;if((t = $(n[i]).find("itunes\\:image,image"), t.length > 0) || (t = $(n[i]).find("media\\:thumbnail,thumbnail"), t.length > 0)){image=(t[0].getAttribute("url") || t[0].getAttribute("href"))}if(valid==3){audios.push({name:g.title,m4a:path,poster:image})}else{audios.push({name:g.title,mp3:path,poster:image})}}}}complete_audiolist()}};var Playlist = function(instance, playlist, options) {var self = this;this.instance = instance;this.playlist = playlist;this.options = options;this.current = 0;this.cssId = {jPlayer: "jquery_jplayer_",interface: "jp_interface_",playlist: "jp_playlist_"};this.cssSelector = {};$.each(this.cssId, function(entity, id) {self.cssSelector[entity] = "#" + id + self.instance;});if(!this.options.cssSelectorAncestor) {this.options.cssSelectorAncestor = this.cssSelector.interface;}$(this.cssSelector.jPlayer).jPlayer(this.options);$(this.cssSelector.interface + " .jp-previous").click(function() {if (self.playlist.length > 1){self.playlistPrev();}$(this).blur();return false;});$(this.cssSelector.interface + " .jp-next").click(function() {if (self.playlist.length > 1){self.playlistNext(false);}$(this).blur();return false;});if (this.playlist.length == 1) {$(this.cssSelector.interface + " .jp-previous").addClass("disabled").removeAttr('href');$(this.cssSelector.interface + " .jp-next").addClass("disabled").removeAttr('href');}};Playlist.prototype={displayPlaylist:function(){var a=this;$(this.cssSelector.playlist+" ul").empty();for(i=0;i<this.playlist.length;i++){var b=(i===this.playlist.length-1)?"<li class='jp-playlist-last'>":"<li>";if(poster_use){if(this.playlist[i].poster.length){b+="<a href='#' id='"+this.cssId.playlist+this.instance+"_item_"+i+"' tabindex='1'><img src='"+this.playlist[i].poster+"' />"+this.playlist[i].name+"</a>"}else{b+="<a href='#' id='"+this.cssId.playlist+this.instance+"_item_"+i+"' tabindex='1'><img src='https://sites.google.com/site/appleclubinterface/home/default-audio-poster.png' />"+this.playlist[i].name+"</a>"}}else{b+="<a href='#' id='"+this.cssId.playlist+this.instance+"_item_"+i+"' tabindex='1'>"+this.playlist[i].name+"</a>"}if(this.playlist[i].free){var c=true;b+="<div class='jp-free-media'>(";$.each(this.playlist[i],function(e,d){if($.jPlayer.prototype.format[e]){if(c){c=false}else{b+=" | "}b+="<a id='"+a.cssId.playlist+a.instance+"_item_"+i+"_"+e+"' href='"+d+"' tabindex='1'>"+e+"</a>"}});b+=")</span>"}b+="</li>";$(this.cssSelector.playlist+" ul").append(b);$(this.cssSelector.playlist+"_item_"+i).data("index",i).click(function(){var d=$(this).data("index");if(a.current!==d){a.playlistChange(d)}else{$(a.cssSelector.jPlayer).jPlayer("play")}$(this).blur();return false});if(this.playlist[i].free){$.each(this.playlist[i],function(e,d){if($.jPlayer.prototype.format[e]){$(a.cssSelector.playlist+"_item_"+i+"_"+e).data("index",i).click(function(){var f=$(this).data("index");$(a.cssSelector.playlist+"_item_"+f).click();$(this).blur();return false})}})}}},playlistInit:function(a){if(a){this.playlistChange(this.current)}else{this.playlistConfig(this.current)}},playlistConfig:function(a){$(this.cssSelector.playlist+"_item_"+this.current).removeClass("jp-playlist-current").parent().removeClass("jp-playlist-current");$(this.cssSelector.playlist+"_item_"+a).addClass("jp-playlist-current").parent().addClass("jp-playlist-current");this.current=a;$(this.cssSelector.jPlayer).jPlayer("setMedia",this.playlist[this.current])},playlistChange:function(a){this.playlistConfig(a);$(this.cssSelector.jPlayer).jPlayer("play")},playlistNext:function(a){var b=(this.current+1<this.playlist.length)?this.current+1:0;if(!a||repeat||this.playlist.length<=1||b!=0){this.playlistChange(b)}},playlistPrev:function(){var a=(this.current-1>=0)?this.current-1:this.playlist.length-1;this.playlistChange(a)}};function complete_audiolist(){var audioPlaylist = new Playlist("1",audios,{ready: function() {audioPlaylist.displayPlaylist();audioPlaylist.playlistInit(/*var_auto_play*/false);},ended: function() {if (repeat || audioPlaylist.playlist.length > 1){audioPlaylist.playlistNext(true);}},play: function() {$(this).jPlayer("pauseOthers");},swfPath:'http://dl.dropboxusercontent.com/s/5qcxaqorg7e1249/',/*supplied*/supplied:"mp3,m4a"});}$(document).ready(function() {if(/*var_sync_podcast*/false){while(audios.length){audios.pop();}loadfeedsource(/*var_podcast_feed_url*/"http://",/*var_podcast_feed_limit*/10,["audio/mpeg","audio/mp3","audio/x-m4a"])}else{complete_audiolist()}});
+</script>
+</head>
+<body style="background: transparent; margin: 0pt;">
+	<div class="jplayer-container"><div id="jquery_jplayer_1" class="jp-jplayer"></div><div class="jp-audio"><div class="jp-type-playlist"><div id="jp_interface_1" class="jp-interface"><ul class="jp-controls">
+    <li><a href="#" class="jp-play" tabindex="1">play</a></li>
+    <li><a href="#" class="jp-pause" tabindex="1">pause</a></li>
+    <li><a href="#" class="jp-stop" tabindex="1">stop</a></li>
+    <li><a href="#" class="jp-mute" tabindex="1">mute</a></li>
+    <li><a href="#" class="jp-unmute" tabindex="1">unmute</a></li>
+    <li><a href="#" class="jp-previous" tabindex="1">previous</a></li>
+	<li><a href="#" class="jp-next" tabindex="1">next</a></li>
+	</ul><div class="jp-progress"><div class="jp-seek-bar"><div class="jp-play-bar"></div></div></div>
+    <div class="jp-volume-bar"><div class="jp-volume-bar-value"></div></div><div class="jp-current-time"></div><div class="jp-duration"></div></div>
+    <div id="jp_playlist_1" class="jp-playlist"><ul></ul></div></div></div></div>
+</body>
+</html>
