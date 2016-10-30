@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<image onclick="myFunction()" src="https://sites.google.com/site/appleclubfhs/home/Download%20dialog.png"></image>
+
+<p id="demo"></p>
+
+<script>
+function myFunction()
+{
+var a;
+var r=confirm("If you intend to download this image, you agree to our Image Use Agreement, which states that you may not use this image for commercial or media purposes without crediting the Apple Club.");
+if (r==true)
+  {
+  window.open('https://googledrive.com/host/0Bz55zRGrsNW2YjR2dkdSb2szTjg', '_blank');
+  }
+else
+  {
+  window.open('https://googledrive.com/host/0Bz55zRGrsNW2enRSazg1R3JlWk0', '_self');
+  }
+document.getElementById("demo").innerHTML=x;
+}
+</script>
+
+</body>
+</html>
