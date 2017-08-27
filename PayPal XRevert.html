@@ -5,7 +5,6 @@
 </head>
 
 <body>
-    <div style="text-align:center">
     <div id="paypal-button"></div>
 
 <script src="https://www.paypalobjects.com/api/checkout.js"></script>
@@ -24,14 +23,35 @@
 
         payment: function(data, actions) {
             return actions.payment.create({
-                payment: {
-                    transactions: [
-                        {
-                            amount: { total: '4.99', currency: 'USD' }
-                        }
-                    ]
-                }
-            });
+  "intent": "sale",
+  "payer": {
+  "payment_method": "paypal"
+  },
+  "transactions": [
+  {
+    "amount": {
+    "total": "4.99",
+    "currency": "USD",
+    "details": {
+      "subtotal": "4.99",
+      "tax": "0.00",
+      "shipping": "0.00",
+      "handling_fee": "0.00",
+      "shipping_discount": "0.00",
+      "insurance": "0.00"
+    }
+    },
+    "description": "XRevert",
+    "payment_options": {
+    "allowed_payment_method": "INSTANT_FUNDING_SOURCE"
+    }
+  }
+  ],
+  "redirect_urls": {
+  "return_url": "https://sites.google.com/site/appleclubfhs/downloads/xrevert-success",
+  "cancel_url": "https://sites.google.com/site/appleclubfhs/downloads/xrevert-download"
+  }
+});
         },
 
         onAuthorize: function(data, actions) {
@@ -42,5 +62,4 @@
 
     }, '#paypal-button');
 </script>
-  </div>
 </body>
