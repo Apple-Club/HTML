@@ -1,65 +1,8 @@
-<!DOCTYPE html>
-
-<head>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-</head>
-
-<body>
-    <div id="paypal-button"></div>
-
-<script src="https://www.paypalobjects.com/api/checkout.js"></script>
-
-<script>
-    paypal.Button.render({
-
-        env: 'production', // Or 'sandbox'
-
-        client: {
-            sandbox:    'Af-GmA-nHpxoVy8E_YB1jSgI3cWuPkJPMT25rSCXJ9wnzSy1L8AcseqMmQzvEUHv_AZFYeI91HP1Ur7r',
-            production: 'AUwRNAzPr5H-MnYrao101NWpisqD8nL0LzXolifw-dDPhOtp6ExUtFNPZcB5NAp9zxtQKpDwbaD920pH'
-        },
-
-        commit: true, // Show a 'Pay Now' button
-
-        payment: function(data, actions) {
-            return actions.payment.create({
-  "intent": "sale",
-  "payer": {
-  "payment_method": "paypal"
-  },
-  "transactions": [
-  {
-    "amount": {
-    "total": "4.99",
-    "currency": "USD",
-    "details": {
-      "subtotal": "4.99",
-      "tax": "0.00",
-      "shipping": "0.00",
-      "handling_fee": "0.00",
-      "shipping_discount": "0.00",
-      "insurance": "0.00"
-    }
-    },
-    "description": "XRevert",
-    "payment_options": {
-    "allowed_payment_method": "INSTANT_FUNDING_SOURCE"
-    }
-  }
-  ],
-  "redirect_urls": {
-  "return_url": "https://sites.google.com/site/appleclubfhs/downloads/xrevert-success",
-  "cancel_url": "https://sites.google.com/site/appleclubfhs/downloads/xrevert-download"
-  }
-});
-        },
-
-        onAuthorize: function(data, actions) {
-            return actions.payment.execute().then(function(payment) {
-		window.location.href='https://sites.google.com/site/appleclubfhs/downloads/xrevert-success';
-            });
-        }
-
-    }, '#paypal-button');
-</script>
-</body>
+<div style="text-align:center">
+<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+<input type="hidden" name="cmd" value="_s-xclick">
+<input type="hidden" name="hosted_button_id" value="MGR826XZ67UEN">
+<input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+<img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+</form>
+</div>
