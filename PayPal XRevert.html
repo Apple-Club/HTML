@@ -1,8 +1,46 @@
-<div style="text-align:center">
-<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-<input type="hidden" name="cmd" value="_s-xclick">
-<input type="hidden" name="hosted_button_id" value="MGR826XZ67UEN">
-<input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
-<img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
-</form>
-</div>
+<!DOCTYPE html>
+
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+</head>
+
+<body>
+    <div style="text-align:center">
+    <div id="paypal-button"></div>
+
+<script src="https://www.paypalobjects.com/api/checkout.js"></script>
+
+<script>
+    paypal.Button.render({
+
+        env: 'production', // Or 'sandbox'
+
+        client: {
+            sandbox:    'Af-GmA-nHpxoVy8E_YB1jSgI3cWuPkJPMT25rSCXJ9wnzSy1L8AcseqMmQzvEUHv_AZFYeI91HP1Ur7r',
+            production: 'AUwRNAzPr5H-MnYrao101NWpisqD8nL0LzXolifw-dDPhOtp6ExUtFNPZcB5NAp9zxtQKpDwbaD920pH'
+        },
+
+        commit: true, // Show a 'Pay Now' button
+
+        payment: function(data, actions) {
+            return actions.payment.create({
+                payment: {
+                    transactions: [
+                        {
+                            amount: { total: '4.99', currency: 'USD' }
+                        }
+                    ]
+                }
+            });
+        },
+
+        onAuthorize: function(data, actions) {
+            return actions.payment.execute().then(function(payment) {
+		window.location.href='https://sites.google.com/site/appleclubfhs/downloads/xrevert-success';
+            });
+        }
+
+    }, '#paypal-button');
+</script>
+  </div>
+</body>
